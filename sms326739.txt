@@ -1,0 +1,32 @@
+CAUSA 
+O serviço de consulta de horários livres não está retornando a quantidade de horários parametrizados no sistema.
+
+O segun erro apontado na SMS, é erro de validação no portal da Cassi e já foi informado ao analista da Cassi.
+
+SOLUÇÃO 
+Foi realizado a correção para que seja retornado a quantidade de horários livres de acordo com o que está parametrizado no sistema.
+
+
+ROTEIRO DE TESTES 
+Pré-Condição:
+  - O prestador a ser utilizado no serviço deverá conter escala parametrizado.
+  - Considerar prestador que contenha apenas um registro de escala, com vários dias selecionados.
+  - Considerar prestaador que possui vários registros de escala parametrizado.
+
+	CAMINHO: 
+	- Acessar o WcfTestClient
+	- Acessar o serviço  Benner.PortalCassi.Clinica.Consulta.svc 
+	- Método PesquisarHorariosLivresParaAgendamentoWeb
+
+	PASSOS: 
+	1- Informar os parametros necessarios
+	2- Consumir o serviço
+
+	RESULTADO ESPERADO: 
+	Serviço deverá retornar a quantidade de horários livres parametrizado no sistema em: [Clinica] -> Tabelas -> Parâmetros Gerais -> Qtde de horários para agenda WEB.
+
+
+
+OBS: Para conseguir o handle do tipo de agendamento, utilize a seguinte consulta:
+
+SELECT * FROM CLI_ATIVIDADE_PRESTADOR WHERE DISPONIBILIZARNAAGENDAWEB = 'S' AND PRESTADOR = :HANDLEPRESTADOR
